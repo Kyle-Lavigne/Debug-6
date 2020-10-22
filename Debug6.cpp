@@ -1,6 +1,7 @@
 #include <iostream>
 #include <array>
 #include <string>
+#include <algorithm>
 using namespace std;
 
 /*
@@ -17,22 +18,16 @@ meant to check if the code is actually in order.
 int arr[] = {20,12,65,45,98,65,85,12,54,78,55,13,50,19,84,20,43,10};
 int arrSize =  sizeof(arr)/sizeof(arr[0]);
 int main() {
-
+int j = arrSize;
   //Bit of code for sorting
-  for (unsigned j=arrSize;j>0;j--){
-    for (unsigned i=1;i<j;i++){
-      if (arr[i-1]>arr[i]){
-        arr[i-1] = arr[i];
-        arr[i] = arr[i-1];
-        }
-    }
-  }
+sort(arr, arr+j);
+reverse(arr +0, arr + j);
 
   // Bit of code to check if sort worked
   // HINT : This bit of code is just fine
   bool checkFlag = true;
   for (unsigned i=1;i<arrSize;i++){
-    if (arr[i]<arr[i-1]){checkFlag = false;}
+    if (arr[i]>arr[i-1]){checkFlag = false;}
   }
   if (checkFlag) {cout << "Sorted properly";}
   else {cout << "Not sorted properly";}
